@@ -5,21 +5,21 @@
 /// </summary>
 internal static class Program
 {
-	private static void Main(string[] args)
-	{
-		if (args.Length == 0)
-		{
-			Console.Error.WriteLine("Usage: password <length>");
-			return;
-		}
-		if (!int.TryParse(args[0], out var length) || length <=2)
-		{
-			Console.Error.WriteLine($"Cannot parse length {args[0]}, use positive int > 2");
-			return;
-		}
-		var (password, elapsedMs) = PasswordGenerator.GeneratePassword(length);
-		Console.WriteLine(password);
-		Console.WriteLine($"Elapsed: {elapsedMs} ms");
-		Console.WriteLine($"Entropy: {PasswordGenerator.CalculateEntropy(length, PasswordGenerator.Length):F2} bit");
-	}
+    private static void Main(string[] args) 
+    { 
+        if (args.Length == 0) 
+        {
+            Console.Error.WriteLine("Usage: password <length>");
+            return;
+        }
+        if (!int.TryParse(args[0], out var length) || length <=2)
+        {
+            Console.Error.WriteLine($"Cannot parse length {args[0]}, use positive int > 2");
+            return;
+        }
+        var (password, elapsedMs) = PasswordGenerator.GeneratePassword(length);
+        Console.WriteLine(password);
+        Console.WriteLine($"Elapsed: {elapsedMs} ms");
+        Console.WriteLine($"Entropy: {PasswordGenerator.CalculateEntropy(length, PasswordGenerator.Length):F2} bit");
+    }
 }
