@@ -36,6 +36,18 @@ internal static class Program
         PasswordFromLength(length);
     }
 
+    private static void PrintUsage()
+    {
+        Console.Error.WriteLine("Usage: password <length>");
+        Console.Error.WriteLine("Usage: password entropy <length>");
+    }
+
+    private static bool GetArgs(string[] args, out string? arg)
+    {
+        arg = args.Length > 1 ? args[1] : null;
+        return arg is not null;
+    }
+
     private static void PasswordFromLength(int length)
     {
         var (password, elapsedMs) = PasswordGenerator.GeneratePassword(length);
