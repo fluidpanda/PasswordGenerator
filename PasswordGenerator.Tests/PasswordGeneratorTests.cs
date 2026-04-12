@@ -3,7 +3,7 @@
 public class PasswordGeneratorTests
 {
     [Fact]
-    public void PasswordShouldContainLowercase()
+    public void PasswordShouldContainAllChars()
     {
         var (password, _) = PasswordGenerator.GeneratePassword(16);
         Assert.Contains(password, char.IsLower);
