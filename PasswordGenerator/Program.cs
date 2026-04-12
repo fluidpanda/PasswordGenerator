@@ -9,31 +9,34 @@ internal static class Program
     {
         if (args.Length == 0)
         {
-            Console.Error.WriteLine("Usage: password <length>");
-            Console.Error.WriteLine("Usage: password entropy <length>");
+            PrintUsage();
             return;
         }
-        if (args[0] == "entropy" && args.Length == 1)
+        var cmd = args[0].ToLowerInvariant();
+        switch (cmd)
         {
-            Console.Error.WriteLine("Usage: password entropy <length>");
-            return;
+            case "entropy":
+                if (!GetArgs(args, out var arg1))
+                {
+                    Console.Error.WriteLine("Usage: password entropy <length>");
+                    return;
+                }
+                if (!int.TryParse(arg1, out var entropy))
+                {
+                    Console.Error.WriteLine($"Cannot parse entropy size: {arg1}");
+                    return;
+                }
+                PasswordFromEntropy(entropy);
+                break;
+            default:
+                if (!int.TryParse(cmd, out var length)|| length <= 2)
+                {
+                    Console.Error.WriteLine($"Cannot parse length `{cmd}`, use positive int > 2");
+                    return;
+                }
+                PasswordFromLength(length);
+                return;
         }
-        if (args[0] == "entropy" && int.TryParse(args[1], out var entropy))
-        {
-            PasswordFromEntropy(entropy);
-            return;
-        }
-        if (args[0] == "entropy" && !int.TryParse(args[1], out var entropySize))
-        {
-            Console.Error.WriteLine($"Cannot parse entropy size: {args[1]}");
-            return;
-        }
-        if (!int.TryParse(args[0], out var length) || length <=2)
-        {
-            Console.Error.WriteLine($"Cannot parse length `{args[0]}`, use positive int > 2");
-            return;
-        }
-        PasswordFromLength(length);
     }
 
     private static void PrintUsage()
