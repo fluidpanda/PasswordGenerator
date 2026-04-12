@@ -10,7 +10,7 @@ public static class PasswordGenerator
     private const string Digits = "0123456789";
     private const string Charset = Lower + Upper + Digits;
     public static readonly int Length = Charset.Length;
-    
+
     public static (string Password, long ElapsedMs) GeneratePassword(int length)
     {
         var sw = Stopwatch.StartNew();
@@ -34,8 +34,8 @@ public static class PasswordGenerator
 
     public static double CalculateEntropy(int length, int charsetSize)
     {
-        var result = length * Math.Log2(charsetSize);
-        return result;
+        var entropy = length * Math.Log2(charsetSize);
+        return entropy;
     }
 
     private static void Shuffle(char[] items)
