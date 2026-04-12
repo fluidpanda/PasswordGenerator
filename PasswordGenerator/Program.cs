@@ -12,9 +12,9 @@ internal static class Program
 			Console.Error.WriteLine("Usage: password <length>");
 			return;
 		}
-		if (!int.TryParse(args[0], out var length) || length <=0)
+		if (!int.TryParse(args[0], out var length) || length <=2)
 		{
-			Console.Error.WriteLine($"Cannot parse length {args[0]}, use positive int");
+			Console.Error.WriteLine($"Cannot parse length {args[0]}, use positive int > 2");
 			return;
 		}
 		var (password, elapsedMs) = PasswordGenerator.GeneratePassword(length);
