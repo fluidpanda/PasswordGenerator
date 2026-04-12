@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace PasswordGenerator;
+﻿namespace PasswordGenerator;
 
 /// <summary>
 /// Generates passwords.
