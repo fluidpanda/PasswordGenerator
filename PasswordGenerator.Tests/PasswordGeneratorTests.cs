@@ -10,4 +10,14 @@ public class PasswordGeneratorTests
         Assert.Contains(password, char.IsUpper);
         Assert.Contains(password, char.IsDigit);
     }
+
+    [Fact]
+    public void PasswordLengthFromEntropy()
+    {
+        const int passwordLength = 32;
+        var charsetSize = PasswordGenerator.Length;
+        var entropy = PasswordGenerator.CalculateEntropy(passwordLength, charsetSize);
+        var lengthFromEntropy = PasswordGenerator.LengthFromEntropy(entropy, charsetSize);
+        Assert.Equal(passwordLength, lengthFromEntropy);
+    }
 }

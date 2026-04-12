@@ -38,6 +38,12 @@ public static class PasswordGenerator
         return entropy;
     }
 
+    public static int LengthFromEntropy(double entropy, int charsetSize)
+    {
+        var length = (int)Math.Ceiling(entropy / Math.Log2(charsetSize));
+        return length;
+    }
+
     private static void Shuffle(char[] items)
     {
         var n = items.Length;
