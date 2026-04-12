@@ -5,9 +5,9 @@
 /// </summary>
 internal static class Program
 {
-    private static void Main(string[] args) 
-    { 
-        if (args.Length == 0) 
+    private static void Main(string[] args)
+    {
+        if (args.Length == 0)
         {
             Console.Error.WriteLine("Usage: password <length>");
             return;
